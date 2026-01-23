@@ -1,0 +1,122 @@
+# Custom Checkov Policies for Cloud Security Landing Zone
+# These policies enforce organization-specific security requirements
+# https://www.checkov.io/3.Custom%20Policies/YAML%20Custom%20Policies.html
+
+metadata:
+  name: "Landing Zone Custom Policies"
+  version: "1.0.0"
+
+# Policy: All resources must have required tags
+- id: "CUSTOM_AWS_001"
+  name: "Ensure all resources have required tags"
+  description: "All AWS resources must have Environment and ManagedBy tags"
+  severity: "MEDIUM"
+  category: "General"
+  guideline: "Add 'Environment' and 'ManagedBy' tags to all resources"
+  resource_types:
+    - "aws_*"
+  definition:
+    or:
+      - cond_type: "attribute"
+        resource_types:
+          - "aws_*"
+        attribute: "tags.Environment"
+        operator: "exists"
+      - cond_type: "attribute"
+        resource_types:
+          - "aws_*"
+        attribute: "tags_all.Environment"
+        operator: "exists"
+
+# Policy: S3 buckets must have versioning enabled
+- id: "CUSTOM_AWS_002"
+  name: "Ensure S3 bucket versioning is enabled"
+  description: "All S3 buckets must have versioning enabled for data protection"
+  severity: "HIGH"
+  category: "Storage"
+  guideline: "Enable versioning on the S3 bucket using aws_s3_bucket_versioning"
+  resource_types:
+    - "aws_s3_bucket_versioning"
+  definition:
+    cond_type: "attribute"
+    resource_types:
+      - "aws_s3_bucket_versioning"
+    attribute: "versioning_configuration.status"
+    operator: "equals"
+    value: "Enabled"
+
+# Policy: IAM roles must have descriptions
+- id: "CUSTOM_AWS_003"
+  name: "Ensure IAM roles have descriptions"
+  description: "All IAM roles must have a description for documentation purposes"
+  severity: "LOW"
+  category: "IAM"
+  guideline: "Add a 'description' attribute to all aws_iam_role resources"
+  resource_types:
+    - "aws_iam_role"
+  definition:
+    cond_type: "attribute"
+    resource_types:
+      - "aws_iam_role"
+    attribute: "description"
+    operator: "exists"
+
+# Policy: KMS keys must have rotation enabled
+- id: "CUSTOM_AWS_004"
+  name: "Ensure KMS key rotation is enabled"
+  description: "All KMS keys must have automatic rotation enabled"
+  severity: "HIGH"
+  category: "Encryption"
+  guideline: "Set 'enable_key_rotation = true' on all aws_kms_key resources"
+  resource_types:
+    - "aws_kms_key"
+  definition:
+    cond_type: "attribute"
+    resource_types:
+      - "aws_kms_key"
+    attribute: "enable_key_rotation"
+    operator: "equals"
+    value: true
+
+# Policy: Security groups must not allow unrestricted SSH
+- id: "CUSTOM_AWS_005"
+  name: "Ensure no unrestricted SSH access"
+  description: "Security groups must not allow SSH (port 22) from 0.0.0.0/0"
+  severity: "CRITICAL"
+  category: "Networking"
+  guideline: "Restrict SSH access to specific IP ranges or use bastion hosts"
+  resource_types:
+    - "aws_security_group"
+    - "aws_security_group_rule"
+  definition:
+    not:
+      and:
+        - cond_type: "attribute"
+          resource_types:
+            - "aws_security_group_rule"
+          attribute: "from_port"
+          operator: "equals"
+          value: 22
+        - cond_type: "attribute"
+          resource_types:
+            - "aws_security_group_rule"
+          attribute: "cidr_blocks"
+          operator: "contains"
+          value: "0.0.0.0/0"
+
+# Policy: CloudTrail must have log file validation enabled
+- id: "CUSTOM_AWS_006"
+  name: "Ensure CloudTrail log file validation is enabled"
+  description: "CloudTrail must have log file integrity validation enabled"
+  severity: "HIGH"
+  category: "Logging"
+  guideline: "Set 'enable_log_file_validation = true' on aws_cloudtrail"
+  resource_types:
+    - "aws_cloudtrail"
+  definition:
+    cond_type: "attribute"
+    resource_types:
+      - "aws_cloudtrail"
+    attribute: "enable_log_file_validation"
+    operator: "equals"
+    value: true

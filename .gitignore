@@ -1,0 +1,40 @@
+# Terraform
+*.tfstate*
+*.terraform.lock.hcl
+.terraform/
+
+# Backend configuration (generated per environment)
+terraform/environments/*/backend.tf
+
+# Terraform variables (contain environment-specific data)
+*.tfvars
+!*.tfvars.example
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+credentials.json
+secrets.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local directory (specs and tracking)
+local/
+
+# Temporary files
+*.tmp
+*.bak

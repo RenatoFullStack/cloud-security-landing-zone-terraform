@@ -1,0 +1,25 @@
+# AWS Configuration
+aws_region   = "eu-west-1"
+project_name = "lz"
+
+# Network Configuration - Production (3 AZs for HA)
+vpc_cidr             = "10.2.0.0/16"
+public_subnet_cidrs  = ["10.2.1.0/24", "10.2.2.0/24", "10.2.3.0/24"]
+private_subnet_cidrs = ["10.2.11.0/24", "10.2.12.0/24", "10.2.13.0/24"]
+enable_nat_gateway   = true
+single_nat_gateway   = false  # HA: NAT Gateway per AZ
+
+# Shared Environment References
+# Get these values from the shared environment outputs:
+#   cd ../shared && terraform output
+#
+# shared_kms_key_arn     = "arn:aws:kms:eu-west-1:123456789012:key/xxx"
+# shared_log_bucket_name = "lz-shared-audit-logs-123456789012"
+# shared_sns_topic_arn   = "arn:aws:sns:eu-west-1:123456789012:lz-shared-security-alerts"
+
+# Additional tags
+tags = {
+  Owner       = "platform-team"
+  CostCenter  = "production"
+  Criticality = "high"
+}

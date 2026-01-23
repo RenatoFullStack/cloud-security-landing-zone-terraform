@@ -1,0 +1,31 @@
+# Checkov configuration file
+# https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
+
+# Framework to scan
+framework:
+  - terraform
+
+# Output format
+output:
+  - cli
+  - junitxml
+
+# Directories to scan
+directory:
+  - terraform/
+
+# Skip specific checks that require organization-level access
+# Note: VPC Flow Logs (CKV2_AWS_11) and default SG (CKV2_AWS_12) are now implemented
+skip-check:
+  # Organization-level checks only (not applicable for single account demo)
+  - CKV2_AWS_38  # Ensure Domain Name System (DNS) query logging is enabled for Amazon Route 53 hosted zones
+  - CKV2_AWS_39  # Ensure Domain Name System Security Extensions (DNSSEC) signing is enabled for Amazon Route 53 hosted zones
+
+# Soft fail for specific frameworks (set to false for blocking)
+soft-fail: false
+
+# Compact output
+compact: true
+
+# Download external modules
+download-external-modules: false

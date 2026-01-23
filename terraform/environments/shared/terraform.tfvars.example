@@ -1,0 +1,26 @@
+# AWS Configuration
+aws_region   = "eu-west-1"
+project_name = "lz"
+
+# Data Protection
+kms_key_deletion_window = 30
+
+# Logging
+log_retention_days     = 365
+s3_log_expiration_days = 2555  # ~7 years for compliance
+alert_email            = "security@example.com"
+
+# Identity
+password_minimum_length = 14
+
+# Break-glass trusted principals (users/roles allowed to assume break-glass role)
+# break_glass_trusted_principals = [
+#   "arn:aws:iam::123456789012:user/security-lead",
+#   "arn:aws:iam::123456789012:role/SecurityAdmin"
+# ]
+
+# Additional tags
+tags = {
+  Owner      = "security-team"
+  CostCenter = "security"
+}

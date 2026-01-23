@@ -1,0 +1,76 @@
+# Pre-commit hooks for Cloud Security Landing Zone
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+# https://pre-commit.com/
+
+repos:
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ['--unsafe']
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: detect-private-key
+      - id: check-merge-conflict
+      - id: no-commit-to-branch
+        args: ['--branch', 'main', '--branch', 'master']
+
+  # Terraform formatting
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.86.0
+    hooks:
+      - id: terraform_fmt
+        args:
+          - --args=-recursive
+
+      - id: terraform_validate
+        args:
+          - --args=-json
+          - --hook-config=--retry-once-with-cleanup=true
+
+      - id: terraform_tflint
+        args:
+          - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
+
+      - id: terraform_docs
+        args:
+          - --args=--config=.terraform-docs.yml
+        # Skip if terraform-docs not needed
+        stages: [manual]
+
+  # Security scanning with Checkov
+  - repo: https://github.com/bridgecrewio/checkov
+    rev: 3.1.50
+    hooks:
+      - id: checkov
+        args:
+          - --directory=terraform/
+          - --config-file=.checkov.yml
+          - --compact
+        # Run only on staged terraform files
+        files: \.tf$
+        # Skip on initial commits with many files
+        stages: [commit]
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix', '--disable', 'MD013', 'MD033', 'MD041', '--']
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: ['-c', '.yamllint.yml']
+
+# Configuration for specific hooks
+default_stages: [commit, push]
+fail_fast: false
